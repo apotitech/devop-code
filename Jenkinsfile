@@ -15,10 +15,9 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage('Test'){
+        stage('Deploy to Tomcat'){
             steps{
-                echo "Testing"
-                sleep 10
+                deploy adapters: [tomcat9(credentialsId: 'DeployerID', path: '', url: 'http://192.168.0.38:8080')], contextPath: null, war: '**/*.war'
             }
         }
     }
