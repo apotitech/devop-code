@@ -3,8 +3,9 @@ pipeline {
     stages {
         stage('build'){
             steps{
-                echo "Building"
-                sleep 5
+                sh 'mvn clean'
+                sh 'mvn install'
+                sh 'mvn package'
             }
         }
         stage('Test'){
